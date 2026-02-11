@@ -1,4 +1,4 @@
-package ro.example.recyclingplatform.controller;
+package ro.ubb.recyclingplatform.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

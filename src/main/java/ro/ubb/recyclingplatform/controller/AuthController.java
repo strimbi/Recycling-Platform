@@ -1,4 +1,4 @@
-package ro.example.recyclingplatform.controller;
+package ro.ubb.recyclingplatform.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
