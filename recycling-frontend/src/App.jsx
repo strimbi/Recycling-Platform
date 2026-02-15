@@ -8,17 +8,29 @@ import Modal from './components/Modal';
 import NewLocationForm from './components/NewLocationForm';
 import AdminPanel from './components/AdminPanel';
 import Leaderboard from "./components/Leaderboard.jsx";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Layout from './components/Layout';
+import { RequireAdmin, RequireAuth } from './components/Guards';
 
-function MapEvents({ onBoundsChange, onMapClick }) {
-    useMapEvents({
-        moveend: (e) => onBoundsChange(e.target.getBounds()),
-        zoomend: (e) => onBoundsChange(e.target.getBounds()),
-        click: (e) => onMapClick?.(e.latlng),
-    });
-    return null;
-}
+import MapPage from './pages/MapPage';
+import LeaderboardPage from './pages/LeaderboardPage';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+import ReportPage from './pages/ReportPage';
+import MyReportsPage from './pages/MyReportsPage';
+import AdminReportsPage from './pages/admin/AdminReportsPage';
+import AdminLocationsPage from './pages/admin/AdminLocationsPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<MapPage />} />
+          <Route path="/leaderboard" element={<LeaderboardPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
     const [wasteTypes, setWasteTypes] = useState([]);
     const [selectedWasteType, setSelectedWasteType] = useState('');
     const [locations, setLocations] = useState([]);
@@ -86,10 +98,18 @@ export default function App() {
                     ))}
                 </select>
 
+          <Route element={<RequireAuth />}>
+            <Route path="/reports" element={<ReportPage />} />
+            <Route path="/my-reports" element={<MyReportsPage />} />
+          </Route>
                 <div style={{marginTop: 16, fontSize: 14, color: '#555'}}>
                     Locații afișate: <b>{locations.length}</b>
                 </div>
 
+          <Route element={<RequireAdmin />}>
+            <Route path="/admin/reports" element={<AdminReportsPage />} />
+            <Route path="/admin/locations" element={<AdminLocationsPage />} />
+          </Route>
                 <div style={{marginTop: 16, fontSize: 12, color: '#777'}}>
                     Hartă publică (fără login). Raportările le adăugăm după ce facem login UI.
                 </div>
@@ -158,6 +178,11 @@ export default function App() {
 
             </div>
 
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
             {/* Map */}
             <div style={{flex: 1}}>
                 <MapContainer center={center} zoom={13} style={{height: '100%', width: '100%'}}>

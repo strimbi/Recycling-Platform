@@ -1,16 +1,43 @@
-# React + Vite
+# Recycling Platform Frontend (React + Vite)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This frontend is wired to the Spring Boot backend you attached.
 
-Currently, two official plugins are available:
+## Setup
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1) Install deps (will update `package-lock.json` because we added React Router):
 
-## React Compiler
+```bash
+npm install
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+2) Configure API URL (optional)
 
-## Expanding the ESLint configuration
+Create `.env` (or copy `.env.example`):
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+VITE_API_URL=http://localhost:8080
+```
+
+3) Run:
+
+```bash
+npm run dev
+```
+
+Backend CORS in your module allows `http://localhost:5173` by default, so Vite's default port works out of the box.
+
+## Pages
+
+- `/` Map (public): shows recycling locations + waste-type filter
+- `/leaderboard` (public)
+- `/login`, `/register`
+- `/reports` (auth): submit a report (full/damaged/wrong info/new location)
+- `/my-reports` (auth): track your reports and admin feedback
+- `/admin/reports` (ADMIN): approve/reject reports (+ optional points override)
+- `/admin/locations` (ADMIN): create/update/delete locations
+
+## Notes
+
+- Auth token is stored in `localStorage` under `rp_token`.
+- Axios automatically attaches `Authorization: Bearer <token>` when logged in.
+- If you run backend with profile `dev`, you can call `POST /api/dev/make-me-admin` (authenticated) to become ADMIN and test the admin pages quickly.
