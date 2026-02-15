@@ -1,22 +1,24 @@
 import { useEffect, useState } from 'react';
-import { api, getApiErrorMessage } from '../api';
+import { api} from '../api';
 
 export default function LeaderboardPage() {
   const [limit, setLimit] = useState(10);
   const [rows, setRows] = useState([]);
   const [error, setError] = useState('');
 
-  const load = async (l) => {
-    setError('');
-    try {
-      const res = await api.get('/api/leaderboard', { params: { limit: l } });
-      setRows(res.data);
-    } catch (e) {
-      setError(getApiErrorMessage(e));
-    }
-  };
+  useEffect(() => {
+    const load = async () => {
+      setError('');
+      try {
+        const res = await api.get('/api/leaderboard', { params: { limit } });
+        setRows(res.data);
+      } catch (e) {
+        setError("You need to log in to see the leaderboard");
+      }
+    };
 
-  useEffect(() => { load(limit); }, [limit]);
+    load();
+  }, [limit]);
 
   return (
     <div className="card">
