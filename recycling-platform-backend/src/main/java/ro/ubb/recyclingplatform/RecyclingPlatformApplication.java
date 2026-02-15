@@ -18,7 +18,7 @@ public class RecyclingPlatformApplication {
     @Bean
     CommandLineRunner seedWasteTypes(WasteTypeRepository wasteTypeRepository) {
         return args -> {
-            List<String> defaults = List.of("PLASTIC", "GLASS", "PAPER", "BATTERIES", "E_WASTE", "TEXTILES", "OIL");
+            List<String> defaults = List.of("PLASTIC", "GLASS", "PAPER", "BATTERIES", "E_WASTE", "TEXTILES", "OIL", "METAL");
             for (String name : defaults) {
                 wasteTypeRepository.findByName(name).orElseGet(() -> wasteTypeRepository.save(
                         WasteType.builder().name(name).build()
