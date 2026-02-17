@@ -13,9 +13,7 @@ export default function AdminPanel({ onAfterApproveNewLocation }) {
         setLoading(true);
         try {
             const res = await api.get('/api/admin/reports', { params: { status: 'PENDING' } });
-            // Dacă backend-ul tău returnează listă simplă:
             setItems(res.data);
-            // Dacă ai page response: setItems(res.data.items);
         } catch (e) {
             setErr(e?.response?.data?.message || 'Nu pot încărca raportările');
         } finally {

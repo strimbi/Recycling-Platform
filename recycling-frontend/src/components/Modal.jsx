@@ -1,7 +1,10 @@
+import { createPortal } from 'react-dom';
+
 export default function Modal({ open, title, children, onClose }) {
     if (!open) return null;
 
-    return (
+    // Portal -> scoate modalul din MapContainer, ca Leaflet să nu mai “fure” click-ul pe input-uri
+    return createPortal(
         <div
             onClick={onClose}
             style={{
@@ -13,6 +16,7 @@ export default function Modal({ open, title, children, onClose }) {
                 justifyContent: 'center',
                 padding: 16,
                 zIndex: 9999,
+                pointerEvents: 'auto',
             }}
         >
             <div
@@ -30,6 +34,7 @@ export default function Modal({ open, title, children, onClose }) {
                 </div>
                 <div>{children}</div>
             </div>
-        </div>
+        </div>,
+        document.body
     );
 }

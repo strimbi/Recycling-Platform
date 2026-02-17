@@ -1,0 +1,201 @@
+/* ===== Layout ===== */
+
+.page-container {
+    height: 100vh;
+    display: flex;
+    background: #f4f6f9;
+    font-family: "Inter", sans-serif;
+}
+
+.sidebar {
+    width: 340px;
+    padding: 24px;
+    background: white;
+    border-right: 1px solid #e5e7eb;
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.04);
+}
+
+.map-wrapper {
+    flex: 1;
+}
+
+/* ===== Titles ===== */
+
+.sidebar h2 {
+    margin-top: 0;
+    font-weight: 700;
+    font-size: 22px;
+}
+
+/* ===== Select ===== */
+
+.select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    background: #f9fafb;
+    font-size: 14px;
+}
+
+/* ===== Primary Button ===== */
+
+.btn-primary {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: white;
+    transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 14px rgba(37, 99, 235, 0.3);
+}
+
+/* ===== Secondary Button ===== */
+
+.btn-secondary {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    background: #f3f4f6;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-secondary:hover {
+    background: #e5e7eb;
+}
+
+/* ===== Leaderboard ===== */
+
+.leaderboard {
+    margin-top: 24px;
+    padding: 16px;
+    background: #f9fafb;
+    border-radius: 12px;
+    box-shadow: inset 0 0 0 1px #e5e7eb;
+}
+
+.leaderboard-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    font-size: 14px;
+}
+
+.rank-badge {
+    font-weight: 700;
+    color: #1d4ed8;
+}
+
+/* ===== Popup Styling ===== */
+
+.leaflet-popup-content-wrapper {
+    border-radius: 14px;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+}
+
+.popup-title {
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.popup-address {
+    font-size: 13px;
+    color: #6b7280;
+}
+
+/* ====== MARKERS (pin style) ====== */
+
+.waste-pin-wrapper {
+    /* Leaflet divIcon wrapper */
+}
+
+.waste-pin {
+    --pin-size: 34px;
+    --pin-fill: #6b7280; /* default */
+    width: var(--pin-size);
+    height: calc(var(--pin-size) * 1.5);
+    transform: translate3d(0, 0, 0);
+    filter: drop-shadow(0 10px 14px rgba(0,0,0,0.25));
+}
+
+.waste-pin svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.waste-pin__shape {
+    fill: var(--pin-fill);
+    stroke: #ffffff;
+    stroke-width: 1.5;
+}
+
+.waste-pin__inner {
+    fill: #ffffff;
+    opacity: 0.95;
+}
+
+/* colors */
+.waste-pin--blue { --pin-fill: #2563eb; }
+.waste-pin--green { --pin-fill: #16a34a; }
+.waste-pin--orange { --pin-fill: #f59e0b; }
+.waste-pin--multi { --pin-fill: #7c3aed; }
+.waste-pin--teal { --pin-fill: #0f766e; }
+.waste-pin--red { --pin-fill: #dc2626; }
+.waste-pin--black { --pin-fill: #111827; }
+.waste-pin--pink { --pin-fill: #db2777; }
+.waste-pin--gray { --pin-fill: #6b7280; }
+.waste-pin--lila { --pin-fill: #ff8ced; }
+
+/* ====== Legend ====== */
+
+.legend {
+    padding: 12px;
+    border-radius: 12px;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+}
+
+.legend-title {
+    font-weight: 700;
+    font-size: 13px;
+    margin-bottom: 10px;
+    color: #111827;
+}
+
+.legend-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    color: #374151;
+    padding: 4px 0;
+}
+
+.legend-pin {
+    width: 12px;
+    height: 12px;
+    border-radius: 999px;
+    border: 2px solid white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.legend-pin--blue { background: #2563eb; }
+.legend-pin--green { background: #16a34a; }
+.legend-pin--orange { background: #f59e0b; }
+.legend-pin--multi { background: #7c3aed; }
+.legend-pin--teal { background: #0f766e; }
+.legend-pin--red { background: #dc2626; }
+.legend-pin--black { background: #111827; }
+.legend-pin--pink { background: #db2777; }
+.legend-pin--gray { background: #6b7280; }
+.legend-pin--lila { background: #ff8ced; }
